@@ -410,19 +410,55 @@ a { color: inherit; }
   }
 }
 
-/* ---------- Banda ---------- */
+/* ---------- Banda en movimiento ----------
+   Sin JavaScript (o con animaciones desactivadas) se ve como una línea centrada.
+   main.js agrega .is-animated y repite el contenido para que se desplace sin cortes. */
 
-.banner {
-  padding: 22px var(--gutter);
+.marquee {
+  overflow: hidden;
+  padding-block: 24px;
   border-block: 2px solid var(--navy);
   margin-block: var(--panel-inset);
-  text-align: center;
 }
-.banner p {
+.marquee-track {
+  display: flex;
+  justify-content: center;
+}
+.marquee-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px 36px;
+  padding-inline: var(--gutter);
   font-size: clamp(1.375rem, 1rem + 1.6vw, 2.5rem);
   font-weight: 800;
   letter-spacing: -0.02em;
-  line-height: 1.1;
+  line-height: 1;
+  white-space: nowrap;
+}
+.marquee-dot {
+  width: 0.5em;
+  height: 0.5em;
+  flex: none;
+  border-radius: 50%;
+}
+.marquee:not(.is-animated) .marquee-dot:last-child { display: none; }
+
+.marquee.is-animated .marquee-track {
+  justify-content: flex-start;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 30s) linear infinite;
+}
+.marquee.is-animated .marquee-group {
+  flex: none;
+  flex-wrap: nowrap;
+  padding-inline: 0 36px;
+}
+.marquee.is-animated:hover .marquee-track { animation-play-state: paused; }
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
 }
 
 /* ---------- El problema ---------- */
