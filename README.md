@@ -51,7 +51,7 @@ Todas las rutas son relativas, así que el sitio funciona igual en esa direcció
 3. Elige su color en `<body data-accent="...">`: `azure`, `navy`, `green`, `sand` o `clay`.
 4. Borra las secciones marcadas como OPCIONAL que no uses.
 5. En `index.html`, sección **Iniciativas**, copia una tarjeta `<a class="initiative-card">` y
-   cambia `data-accent`, `href`, número, nombre, lema y descripción.
+   cambia `data-accent`, `href`, nombre, lema y descripción.
 
 No hace falta tocar el menú ni el pie de página: ambos enlazan a la sección de iniciativas.
 
