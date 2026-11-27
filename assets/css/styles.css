@@ -422,9 +422,13 @@ a { color: inherit; }
 }
 .marquee-track {
   display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
   justify-content: center;
 }
 .marquee-group {
+  /* margin: 0 evita que la regla general "p + p" baje la segunda copia */
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -875,10 +879,25 @@ a { color: inherit; }
 }
 .js .reveal.is-visible { opacity: 1; transform: none; }
 
+/* ---------- Logo interactivo: crece un poco al pasar el mouse ----------
+   Solo en dispositivos con mouse (en celulares no hay "hover"). transform no mueve
+   nada más de la página. */
+
+.brand-mark,
+.hero-mark { transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1); }
+
+@media (hover: hover) {
+  .brand:hover .brand-mark { transform: scale(1.15); }
+}
+@media (hover: hover) and (min-width: 900px) {
+  .hero-mark:hover { transform: scale(1.06); }
+}
+.brand:focus-visible .brand-mark { transform: scale(1.15); }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
-  .btn, .initiative-card, .arrow-circle { transition: none; }
+  .btn, .initiative-card, .arrow-circle, .brand-mark, .hero-mark { transition: none; }
 }
 
 /* Fundadores: fotos cuadradas y de ancho limitado en pantallas grandes */
